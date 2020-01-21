@@ -1,3 +1,17 @@
 from django.db import models
 
-# Create your models here.
+
+class ClothesType(models.Model):
+    name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.name
+
+
+class Item(models.Model):
+    name = models.CharField(max_length=128)
+    price = models.FloatField()
+    type = models.ForeignKey(ClothesType, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.name
