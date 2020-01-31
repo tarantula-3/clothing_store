@@ -11,6 +11,16 @@
 <body>
     <p><a href="{% url 'clothing:index' %}">Home</a></p>
     <p><a href="{% url 'user:login' %}">Login</a></p>
+
+    {% if user.is_authenticated %}
+        <p>
+            {{ user.username }}
+            <a href="{% url 'user:logout' %}">Logout</a>
+        </p>
+    {% else %}
+        <p><a href="{% url 'user:login' %}">Login</a></p>
+    {% endif %}
+
     {% block page_header %}
     {% endblock page_header %}
 
